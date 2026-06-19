@@ -1,76 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EPD-Math Team Status Report</title>
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mathadmin2026.github.io/Math-Team-Report-2026/">
     <meta property="og:title" content="EPD-Math Team Status Report">
     <meta property="og:description" content="Combined Operations Dashboard - June 2026">
     <meta property="og:image" content="https://mathadmin2026.github.io/Math-Team-Report-2026/social-preview.png">
-
+    <meta property="og:url" content="https://mathadmin2026.github.io/Math-Team-Report-2026/">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
+    <div class="header">
         <h1>EPD-Math Team Status Report</h1>
-        <p>Combined Operations Dashboard — June 2026</p>
-    </header>
+        <p><strong>Combined Operations Dashboard</strong> | Date: <span>June 2026</span></p>
+    </div>
 
-    <main class="report-container">
-        <section class="status-card finished-card">
-            <h2>Finished</h2>
-            <ul id="finished-list">
-                </ul>
-        </section>
+    <div class="filter-container">
+        <button class="filter-btn phoenix-btn" onclick="filterCompany('phoenix')">Phoenix Publishing House</button>
+        <button class="filter-btn sibs-btn" onclick="filterCompany('sibs')">Sibs Publishing House</button>
+    </div>
 
-        <section class="status-card ongoing-card">
-            <h2>Ongoing</h2>
-            <ul id="ongoing-list">
-                </ul>
-        </section>
+    <div class="vertical-container">
 
-        <section class="status-card delayed-card">
-            <h2>Delayed</h2>
-            <ul id="delayed-list">
-                </ul>
-        </section>
-    </main>
+        <div class="company-block phoenix-block" style="display: none;">
+
+            <details class="section-accordion Finished" open>
+                <summary>Finished Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Completion Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Grade 10 Science Textbook</strong></td>
+                                <td>Sarah Jenkins</td>
+                                <td>John Doe</td>
+                                <td>June 12</td>
+                                <td>100% Complete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <details class="section-accordion Ongoing" open>
+                <summary>Ongoing Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Target Release Date</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Elementary English Workbook</strong></td>
+                                <td>Amy Pond</td>
+                                <td>David Ten</td>
+                                <td>July 01</td>
+                                <td>65%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <details class="section-accordion Delayed" open>
+                <summary>Delayed Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Revised Target Date</th>
+                                <th>Reason for Delay</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Introduction to Literature</strong></td>
+                                <td>Robert Frost</td>
+                                <td>Ben Shahn</td>
+                                <td>August 15</td>
+                                <td>Waiting on copyright approvals for featured poems.</td>
+                                <td><span class="status-alert">Paused</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </div>
+
+
+        <div class="company-block sibs-block" style="display: none;">
+
+            <details class="section-accordion Finished" open>
+                <summary>Finished Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Completion Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Early Childhood Reading Pack</strong></td>
+                                <td>Dr. Maria Santos</td>
+                                <td>Alan Cruz</td>
+                                <td>June 10</td>
+                                <td>100% Complete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <details class="section-accordion Ongoing" open>
+                <summary>Ongoing Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Target Release Date</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Advanced Filipino Grammar</strong></td>
+                                <td>Grace Poe</td>
+                                <td>Luna Reyes</td>
+                                <td>July 20</td>
+                                <td>80%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <details class="section-accordion Delayed" open>
+                <summary>Delayed Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Revised Target Date</th>
+                                <th>Reason for Delay</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Senior High Calculus</strong></td>
+                                <td>Jaime Caro</td>
+                                <td>Ray Sunga</td>
+                                <td>September 20</td>
+                                <td>Author requested medical leave.</td>
+                                <td><span class="status-alert">Delayed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </div>
+
+    </div>
 
     <script>
-        // EDIT YOUR REPORT ITEMS INSIDE THESE BRACKETS:
-        const reportData = {
-            finished: [
-                "Project Alpha Final Documentation",
-                "Q2 Budget Optimization Model",
-                "Automated Script Migration"
-            ],
-            ongoing: [
-                "Data Pipeline Synchronization",
-                "Cross-Department Inventory Audit"
-            ],
-            delayed: [
-                "Legacy Server Decommissioning (Pending IT approval)"
-            ]
-        };
+        function filterCompany(company) {
+            // Remove active style from all buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
 
-        // AUTOMATION ENGINE: Injects the items into the HTML above
-        function populateList(elementId, itemsArray) {
-            const listElement = document.getElementById(elementId);
-            if (!listElement) return;
-            
-            listElement.innerHTML = itemsArray
-                .map(item => `<li>${item}</li>`)
-                .join('');
+            const phoenix = document.querySelector('.phoenix-block');
+            const sibs = document.querySelector('.sibs-block');
+
+            if (company === 'phoenix') {
+                document.querySelector('.phoenix-btn').classList.add('active');
+                phoenix.style.display = 'block';
+                sibs.style.display = 'none';
+            } else if (company === 'sibs') {
+                document.querySelector('.sibs-btn').classList.add('active');
+                phoenix.style.display = 'none';
+                sibs.style.display = 'block';
+            }
         }
-
-        // Run automation on page load
-        populateList("finished-list", reportData.finished);
-        populateList("ongoing-list", reportData.ongoing);
-        populateList("delayed-list", reportData.delayed);
     </script>
 
 </body>
