@@ -11,26 +11,23 @@
     <meta property="og:description" content="Combined Operations Dashboard — June 2026">
     <meta property="og:image" content="https://mathadmin2026.github.io/Math-Team-Report-2026/social-preview.png">
 
-    <link rel="stylesheet" href="style.css">
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
-        /* Simple styling to keep the chart centered and responsive */
-        .chart-container {
-            max-width: 400px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .chart-container h3 {
-            text-align: center;
-            margin-bottom: 20px;
+        /* Base page styles to ensure a clean look */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f9fa;
             color: #333;
-            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
         }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header h1 { color: #2c3e50; margin-bottom: 5px; }
+        header p { color: #7f8c8d; margin: 0; }
     </style>
 </head>
 <body>
@@ -40,30 +37,32 @@
         <p>Combined Operations Dashboard — June 2026</p>
     </header>
 
-    <main class="report-container">
-        <section class="status-card finished-card">
-            <h2>Finished Titles</h2>
-            <ul id="finished-list"></ul>
-        </section>
-
-        <section class="status-card ongoing-card">
-            <h2>Ongoing Titles</h2>
-            <ul id="ongoing-list"></ul>
-        </section>
-
-        <section class="status-card delayed-card">
-            <h2>Delayed Titles</h2>
-            <ul id="delayed-list"></ul>
-        </section>
-
-        <div class="chart-container">
-            <h3>Project Status Breakdown</h3>
-            <canvas id="statusPieChart"></canvas>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 1200px; margin: 0 auto;">
+        
+        <div style="background: #ffffff; flex: 1; min-width: 280px; max-width: 360px; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid #2ecc71;">
+            <h2 style="margin-top: 0; font-size: 1.3rem; color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px;">Finished Titles</h2>
+            <ul id="finished-list" style="list-style-type: disc; padding-left: 20px; line-height: 1.6; margin-bottom: 0;"></ul>
         </div>
-    </main>
+
+        <div style="background: #ffffff; flex: 1; min-width: 280px; max-width: 360px; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid #3498db;">
+            <h2 style="margin-top: 0; font-size: 1.3rem; color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px;">Ongoing Titles</h2>
+            <ul id="ongoing-list" style="list-style-type: disc; padding-left: 20px; line-height: 1.6; margin-bottom: 0;"></ul>
+        </div>
+
+        <div style="background: #ffffff; flex: 1; min-width: 280px; max-width: 360px; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid #e74c3c;">
+            <h2 style="margin-top: 0; font-size: 1.3rem; color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px;">Delayed Titles</h2>
+            <ul id="delayed-list" style="list-style-type: disc; padding-left: 20px; line-height: 1.6; margin-bottom: 0;"></ul>
+        </div>
+
+        <div style="flex: 1 1 100%; max-width: 380px; margin-top: 30px; background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h3 style="text-align: center; margin-top: 0; margin-bottom: 15px; color: #2c3e50; font-size: 1.2rem;">Project Status Breakdown</h3>
+            <canvas id="statusPieChart" style="max-width: 100%; height: auto;"></canvas>
+        </div>
+
+    </div>
 
     <script>
-        // EDIT YOUR REPORT ITEMS INSIDE THESE BRACKETS:
+        // EDIT YOUR ENTRIES IN THESE BRACKETS:
         const reportData = {
             finished: [
                 "Grade 10 Science Textbook"
@@ -76,47 +75,32 @@
             ]
         };
 
-        // 1. AUTOMATION ENGINE: Injects items into lists
+        // Inject items into the list placeholders
         function populateList(elementId, itemsArray) {
             const listElement = document.getElementById(elementId);
             if (!listElement) return;
-            
-            listElement.innerHTML = itemsArray
-                .map(item => `<li>${item}</li>`)
-                .join('');
+            listElement.innerHTML = itemsArray.map(item => `<li>${item}</li>`).join('');
         }
 
         populateList("finished-list", reportData.finished);
         populateList("ongoing-list", reportData.ongoing);
         populateList("delayed-list", reportData.delayed);
 
-        // 2. CHART ENGINE: Counts entries and generates the pie chart
+        // Generate the Pie Chart
         const ctx = document.getElementById('statusPieChart').getContext('2d');
         new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: ['Finished', 'Ongoing', 'Delayed'],
                 datasets: [{
-                    data: [
-                        reportData.finished.length, 
-                        reportData.ongoing.length, 
-                        reportData.delayed.length
-                    ],
-                    backgroundColor: [
-                        '#2ecc71', // Green for Finished
-                        '#3498db', // Blue for Ongoing
-                        '#e74c3c'  // Red for Delayed
-                    ],
+                    data: [reportData.finished.length, reportData.ongoing.length, reportData.delayed.length],
+                    backgroundColor: ['#2ecc71', '#3498db', '#e74c3c'],
                     borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
+                plugins: { legend: { position: 'bottom' } }
             }
         });
     </script>
