@@ -1,197 +1,92 @@
+/* General Page Styling */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background-color: #f8fafc;
-    color: #1e293b;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
-/* Header styling */
-.header {
-    background-color: #0f172a; 
-    color: white;
+header {
     text-align: center;
-    padding: 30px 20px;
-    margin-bottom: 25px;
-    border-bottom: 4px solid #3b82f6;
+    margin-bottom: 40px;
 }
 
-.header h1 { margin: 0 0 8px 0; font-size: 1.6rem; }
-.header p { margin: 0; color: #94a3b8; font-size: 0.9rem; }
-
-/* Main layout wrapper - Expanded for wider screens */
-.vertical-container {
-    max-width: 1400px; /* Changed from 1100px to give you much more horizontal space */
-    width: 92%;        /* Allows it to scale beautifully on ultra-wide monitors */
-    margin: 0 auto;
-    padding: 0 15px;
+header h1 {
+    color: #2c3e50;
+    margin-bottom: 5px;
 }
 
-/* Action Button Container Layout */
-.filter-container {
-    text-align: center;
-    margin-bottom: 30px;
+header p {
+    color: #7f8c8d;
+    margin: 0;
+}
+
+/* Flexbox Layout to bring back the side-by-side tables */
+.report-container {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
-    gap: 15px;
-    padding: 0 15px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Clean Custom Action Buttons Style */
-.filter-btn {
-    background-color: #ffffff;
-    color: #475569;
-    border: 2px solid #cbd5e1;
-    padding: 12px 24px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+/* Status Card Styles */
+.status-card {
+    background: #ffffff;
+    flex: 1;
+    min-width: 280px;
+    max-width: 360px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-top: 5px solid #ccc;
 }
 
-.filter-btn:hover {
-    background-color: #f1f5f9;
-    color: #0f172a;
-    border-color: #94a3b8;
+/* Custom card accents based on status */
+.finished-card { border-top-color: #2ecc71; }
+.ongoing-card { border-top-color: #3498db; }
+.delayed-card { border-top-color: #e74c3c; }
+
+.status-card h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: #2c3e50;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
 }
 
-/* Orange State for Phoenix Button */
-.phoenix-btn.active {
-    background-color: #f97316;
-    color: #ffffff;
-    border-color: #ea580c;
-    box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
+.status-card ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
 }
 
-/* Red State for Sibs Button */
-.sibs-btn.active {
-    background-color: #ef4444;
-    color: #ffffff;
-    border-color: #dc2626;
-    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.2);
+.status-card li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f2f6;
+    line-height: 1.4;
 }
 
-/* Company Table Panel Blocks */
-.company-block {
+.status-card li:last-child {
+    border-bottom: none;
+}
+
+/* Centered Pie Chart Card */
+.chart-container {
+    flex: 1 1 100%; /* Forces the chart to sit on its own row below the tables */
+    max-width: 400px;
+    margin-top: 40px;
     background: #ffffff;
     padding: 20px;
-    padding-top: 5px; /* Added to keep the spacing perfect now that the headers are gone */
-    margin-bottom: 25px;
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.company-title {
-    color: #0f172a;
-    font-size: 1.3rem;
+.chart-container h3 {
+    text-align: center;
     margin-top: 0;
-    margin-bottom: 15px;
-}
-
-.section-accordion {
-    background-color: #ffffff;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #e2e8f0;
-}
-
-summary {
-    padding: 14px 18px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-}
-
-.Finished summary { background-color: #f0fdf4; color: #166534; border-left: 5px solid #22c55e; }
-.Ongoing summary { background-color: #eff6ff; color: #1e40af; border-left: 5px solid #3b82f6; }
-.Delayed summary { background-color: #fef2f2; color: #991b1b; border-left: 5px solid #ef4444; }
-
-/* Perfectly Aligned Tables Layout */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    table-layout: fixed; /* Forces columns to respect exact pixel alignments */
-}
-
-th, td {
-    padding: 14px 16px;
-    font-size: 0.9rem;
-    text-align: left;
-    vertical-align: middle; /* Centers text vertically inside cells */
-    border-bottom: 1px solid #e2e8f0;
-    word-wrap: break-word; /* Prevents overflow stretching the tables */
-}
-
-/* Rebalanced vertical column alignments for 5-Column Tables (Finished & Ongoing) */
-.Finished table th:nth-child(1), .Finished table td:nth-child(1),
-.Ongoing table th:nth-child(1), .Ongoing table td:nth-child(1) { width: 30%; } /* Shorter Book Title */
-
-.Finished table th:nth-child(2), .Finished table td:nth-child(2),
-.Ongoing table th:nth-child(2), .Ongoing table td:nth-child(2) { width: 18%; } /* Editor */
-
-.Finished table th:nth-child(3), .Finished table td:nth-child(3),
-.Ongoing table th:nth-child(3), .Ongoing table td:nth-child(3) { width: 18%; } /* Artist */
-
-.Finished table th:nth-child(4), .Finished table td:nth-child(4),
-.Ongoing table th:nth-child(4), .Ongoing table td:nth-child(4) { width: 18%; } /* Target/Completion Date */
-
-.Finished table th:nth-child(5), .Finished table td:nth-child(5),
-.Ongoing table th:nth-child(5), .Ongoing table td:nth-child(5) { width: 16%; } /* Status/Progress */
-
-/* Rebalanced vertical column alignments for 6-Column Tables (Delayed) */
-.Delayed table th:nth-child(1), .Delayed table td:nth-child(1) { width: 22%; } /* Shorter Book Title */
-.Delayed table th:nth-child(2), .Delayed table td:nth-child(2) { width: 15%; } /* Editor */
-.Delayed table th:nth-child(3), .Delayed table td:nth-child(3) { width: 15%; } /* Artist */
-.Delayed table th:nth-child(4), .Delayed table td:nth-child(4) { width: 15%; } /* Revised Date */
-.Delayed table th:nth-child(5), .Delayed table td:nth-child(5) { width: 21%; } /* Reason for Delay */
-.Delayed table th:nth-child(6), .Delayed table td:nth-child(6) { width: 12%; } /* Status Tag */
-
-/* Set precise vertical column alignments for 6-Column Tables (Delayed) */
-.Delayed table th:nth-child(1), .Delayed table td:nth-child(1) { width: 25%; } /* Book Title */
-.Delayed table th:nth-child(2), .Delayed table td:nth-child(2) { width: 15%; } /* Editor */
-.Delayed table th:nth-child(3), .Delayed table td:nth-child(3) { width: 15%; } /* Artist */
-.Delayed table th:nth-child(4), .Delayed table td:nth-child(4) { width: 13%; } /* Revised Date */
-.Delayed table th:nth-child(5), .Delayed table td:nth-child(5) { width: 20%; } /* Reason */
-.Delayed table th:nth-child(6), .Delayed table td:nth-child(6) { width: 12%; } /* Alert Tag */
-}
-
-th, td {
-    padding: 12px 14px;
-    font-size: 0.9rem;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-th {
-    background-color: #f8fafc;
-    color: #475569;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-}
-
-.status-alert {
-    background-color: #fee2e2;
-    color: #991b1b;
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-/* Mobile adjustments */
-@media screen and (max-width: 600px) {
-    .filter-container { flex-direction: column; gap: 10px; }
-    .filter-btn { width: 100%; }
-}
-
-/* Shorten long titles with a clean ellipsis (...) */
-table td strong {
-    display: inline-block;
-    max-width: 280px;         /* Adjust this number to make the title column narrower or wider */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: bottom;
+    margin-bottom: 20px;
+    color: #2c3e50;
 }
