@@ -1,174 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EPD-Math Status Report</title>
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mathadmin2026.github.io/Math-Team-Report-2026/">
-    <meta property="og:title" content="EPD-Math Status Report">
-    <meta property="og:description" content="Combined Operations Dashboard — June 2026">
+    <title>EPD-Math Team Status Report</title>
+    <meta property="og:title" content="EPD-Math Team Status Report">
+    <meta property="og:description" content="Combined Operations Dashboard - June 2026">
     <meta property="og:image" content="https://mathadmin2026.github.io/Math-Team-Report-2026/social-preview.png">
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        header h1 { color: #2c3e50; margin-bottom: 5px; font-size: 2rem; }
-        header p { color: #7f8c8d; margin: 0; font-size: 1rem; }
-
-        /* Filter Buttons Container */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .btn {
-            padding: 12px 30px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            background-color: #e0e0e0;
-            color: #555;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        /* Requested Accent Button Rules */
-        #btn-phoenix.active { background-color: #e67e22; color: white; } /* Orange Accent */
-        #btn-sibs.active { background-color: #e74c3c; color: white; }    /* Red Accent */
-
-        /* Layout Architecture */
-        .grid-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .status-section {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        /* Table Responders and Grid Styles */
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            text-align: left;
-        }
-        th, td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #f1f2f6;
-            font-size: 0.95rem;
-        }
-        th {
-            background-color: #f8f9fa;
-            color: #34495e;
-            font-weight: 600;
-        }
-        tr:hover { background-color: #fafafa; }
-
-        .chart-box {
-            max-width: 380px;
-            margin: 20px auto 0 auto;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        
-        .hidden-row { display: none !important; }
-    </style>
+    <meta property="og:url" content="https://mathadmin2026.github.io/Math-Team-Report-2026/">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>EPD-Math Status Report</h1>
-        <p>Combined Operations Dashboard — June 2026</p>
-    </header>
-
-    <div class="filter-container">
-        <button id="btn-phoenix" class="btn active" onclick="filterTeam('Phoenix')">Phoenix Titles</button>
-        <button id="btn-sibs" class="btn" onclick="filterTeam('Sibs')">Sibs Titles</button>
+    <div class="header">
+        <h1>EPD-Math Team Status Report</h1>
+        <p><strong>Combined Operations Dashboard</strong> | Date: <span>June 2026</span></p>
     </div>
 
-    <div class="grid-container">
-        
-        <div class="status-section" style="border-left: 5px solid #2ecc71;">
-            <h2 style="margin-top: 0; color: #2ecc71; font-size: 1.4rem;">Finished Titles</h2>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Book Title</th>
-                            <th>Artist</th>
-                            <th>Editor</th>
-                            <th>Target Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="finished-body">
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Grade 1 Math Textbook</b></td>
-                            <td>Juan Cruz</td>
-                            <td>Jane Doe</td>
-                            <td>May 15, 2026</td>
-                            <td><span style="color:#2ecc71; font-weight:600;">Finished</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Grade 2 Math Textbook</b></td>
-                            <td>Maria Santos</td>
-                            <td>John Smith</td>
-                            <td>May 20, 2026</td>
-                            <td><span style="color:#2ecc71; font-weight:600;">Finished</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="filter-container">
+        <button class="filter-btn phoenix-btn" onclick="filterCompany('phoenix')">Phoenix Publishing House</button>
+        <button class="filter-btn sibs-btn" onclick="filterCompany('sibs')">Sibs Publishing House</button>
+    </div>
+
+    <div class="vertical-container">
+
+        <div class="company-block phoenix-block" style="display: none;">
+
+            <details class="section-accordion Finished" open>
+                <summary>Finished Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Completion Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Grade 10 Science Textbook</strong></td>
+                                <td>Sarah Jenkins</td>
+                                <td>John Doe</td>
+                                <td>June 12</td>
+                                <td>100% Complete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <details class="section-accordion Ongoing" open>
+                <summary>Ongoing Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Target Release Date</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Elementary English Workbook</strong></td>
+                                <td>Amy Pond</td>
+                                <td>David Ten</td>
+                                <td>July 01</td>
+                                <td>65%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <details class="section-accordion Delayed" open>
+                <summary>Delayed Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Revised Target Date</th>
+                                <th>Reason for Delay</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Introduction to Literature</strong></td>
+                                <td>Robert Frost</td>
+                                <td>Ben Shahn</td>
+                                <td>August 15</td>
+                                <td>Waiting on copyright approvals for featured poems.</td>
+                                <td><span class="status-alert">Paused</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
         </div>
 
-        <div class="status-section" style="border-left: 5px solid #3498db;">
-            <h2 style="margin-top: 0; color: #3498db; font-size: 1.4rem;">Ongoing Titles</h2>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Book Title</th>
-                            <th>Artist</th>
-                            <th>Editor</th>
-                            <th>Target Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="ongoing-body">
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Grade 3 Math Textbook</b></td>
-                            <td>Juan Cruz</td>
-                            <td>Jane Doe</td>
-                            <td>June 30, 2026</td>
+
+        <div class="company-block sibs-block" style="display: none;">
+
+            <details class="section-accordion Finished" open>
+                <summary>Finished Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Completion Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Early Childhood Reading Pack</strong></td>
+                                <td>Dr. Maria Santos</td>
+                                <td>Alan Cruz</td>
+                                <td>June 10</td>
+                                <td>100% Complete</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <details class="section-accordion Ongoing" open>
+                <summary>Ongoing Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Target Release Date</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Advanced Filipino Grammar</strong></td>
+                                <td>Grace Poe</td>
+                                <td>Luna Reyes</td>
+                                <td>July 20</td>
+                                <td>80%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+
+            <details class="section-accordion Delayed" open>
+                <summary>Delayed Titles <span class="arrow">▼</span></summary>
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Editor</th>
+                                <th>Artist</th>
+                                <th>Revised Target Date</th>
+                                <th>Reason for Delay</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Senior High Calculus</strong></td>
+                                <td>Jaime Caro</td>
+                                <td>Ray Sunga</td>
+                                <td>September 20</td>
+                                <td>Author requested medical leave.</td>
+                                <td><span class="status-alert">Delayed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </div>
+
+    </div>
+
+    <script>
+        function filterCompany(company) {
+            // Remove active style from all buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+
+            const phoenix = document.querySelector('.phoenix-block');
+            const sibs = document.querySelector('.sibs-block');
+
+            if (company === 'phoenix') {
+                document.querySelector('.phoenix-btn').classList.add('active');
+                phoenix.style.display = 'block';
+                sibs.style.display = 'none';
+            } else if (company === 'sibs') {
+                document.querySelector('.sibs-btn').classList.add('active');
+                phoenix.style.display = 'none';
+                sibs.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
