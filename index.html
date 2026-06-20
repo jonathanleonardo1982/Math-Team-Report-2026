@@ -55,7 +55,7 @@
             gap: 12px;
             margin-bottom: 24px;
             padding: 0 20px;
-            flex-wrap: wrap; /* Allows buttons to stack elegantly on ultra-small screens */
+            flex-wrap: wrap;
         }
         .btn {
             padding: 10px 24px;
@@ -113,7 +113,6 @@
         }
         .collapsed .arrow-icon { transform: rotate(-90deg); }
 
-        /* MOBILE SCROLL CONTAINER ACTIVATED */
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -127,7 +126,7 @@
             margin-top: 8px;
             text-align: left;
             table-layout: fixed;
-            min-width: 750px; /* Forces standard row footprint; blocks vertical crushing */
+            min-width: 750px;
         }
         th, td {
             padding: 8px 10px;
@@ -171,6 +170,7 @@
         }
         
         .hidden-row { display: none !important; }
+        .loading-text { text-align: center; padding: 20px; color: #a0aec0; font-style: italic; }
     </style>
 </head>
 <body>
@@ -204,24 +204,7 @@
                         </tr>
                     </thead>
                     <tbody id="finished-body">
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Soaring 6 TWE</b></td><td>RED</td><td>Junel</td><td>Onai</td><td>June 10</td><td><span class="badge-success">100% Complete</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>NCM 9 TWE</b></td><td>RED</td><td>Camille</td><td>Onai</td><td>June 12</td><td><span class="badge-success">100% Complete</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Soaring Finite 1 TB</b></td><td>RED</td><td>Ronald</td><td>Onai</td><td>June 15</td><td><span class="badge-success">100% Complete</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>May 28</td><td><span class="badge-success">100% Complete</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>June 02</td><td><span class="badge-success">100% Complete</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>June 14</td><td><span class="badge-success">100% Complete</span></td>
-                        </tr>
+                        <tr><td colspan="6" class="loading-text">Loading operational records...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -244,24 +227,7 @@
                         </tr>
                     </thead>
                     <tbody id="ongoing-body">
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>July 20</td><td><span class="badge-info">80%</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>July 25</td><td><span class="badge-info">65%</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Book Title and Level</b></td><td>BLUE</td><td>Name</td><td>Name</td><td>August 05</td><td><span class="badge-info">40%</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>BLUE</td><td>Name</td><td>Name</td><td>July 15</td><td><span class="badge-info">90%</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>GREEN</td><td>Name</td><td>Name</td><td>August 12</td><td><span class="badge-info">55%</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>August 30</td><td><span class="badge-info">20%</span></td>
-                        </tr>
+                        <tr><td colspan="6" class="loading-text">Loading operational records...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -284,24 +250,7 @@
                         </tr>
                     </thead>
                     <tbody id="delayed-body">
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>September 05</td><td><span class="badge-danger">Awaiting finalized curriculum syllabus.</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>September 15</td><td><span class="badge-danger">Delayed due to graphic asset pipelines.</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Phoenix">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>October 01</td><td><span class="badge-danger">Pending board peer review.</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>RED</td><td>Name</td><td>Name</td><td>September 20</td><td><span class="badge-danger">Author requested medical leave.</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>BLUE</td><td>Name</td><td>Name</td><td>October 10</td><td><span class="badge-danger">Pending workbook appendices correction.</span></td>
-                        </tr>
-                        <tr class="project-row" data-team="Sibs">
-                            <td><b>Book Title and Level</b></td><td>GREEN</td><td>Name</td><td>Name</td><td>October 25</td><td><span class="badge-danger">Awaiting final print sign-offs.</span></td>
-                        </tr>
+                        <tr><td colspan="6" class="loading-text">Loading operational records...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -315,11 +264,95 @@
     </div>
 
     <script>
+        //https://docs.google.com/spreadsheets/d/e/2PACX-1vSCmxbFygdwcJX1OyqykZszRht-4P_8vW1ZsGEix8q0jTcygGBi3Jm1ZxsHc4pEUN900WnFJa6RLFW6/pub?output=csv
+        const SHEET_CSV_URL = "YOUR_GOOGLE_SHEET_CSV_URL_HERE";
+
         let chartInstance = null;
+        let currentFilter = "Phoenix";
 
         window.toggleSection = function(headerElement) {
             headerElement.classList.toggle('collapsed');
         };
+
+        // Standard robust CSV parser logic handling commas inside quotes safely
+        function parseCSV(text) {
+            let lines = text.split(/\r\n|\n/);
+            let result = [];
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i]) continue;
+                let row = [];
+                let insideQuote = false;
+                let entry = "";
+                for (let j = 0; j < lines[i].length; j++) {
+                    let char = lines[i][j];
+                    if (char === '"') {
+                        insideQuote = !insideQuote;
+                    } else if (char === ',' && !insideQuote) {
+                        row.push(entry.trim());
+                        entry = "";
+                    } else {
+                        entry += char;
+                    }
+                }
+                row.push(entry.trim());
+                if (row.length >= 7) result.push(row);
+            }
+            return result;
+        }
+
+        async function fetchSpreadsheetData() {
+            try {
+                const response = await fetch(SHEET_CSV_URL);
+                const dataText = await response.text();
+                const parsedRows = parseCSV(dataText);
+                
+                // Clear out loading messages
+                document.getElementById('finished-body').innerHTML = '';
+                document.getElementById('ongoing-body').innerHTML = '';
+                document.getElementById('delayed-body').innerHTML = '';
+
+                parsedRows.forEach(columns => {
+                    const team = columns[0];
+                    const section = columns[1];
+                    const title = columns[2];
+                    const spine = columns[3];
+                    const editor = columns[4];
+                    const artist = columns[5];
+                    const dynamicMeta = columns[6];
+
+                    let badgeClass = "badge-info";
+                    let targetBodyId = "ongoing-body";
+
+                    if (section.toLowerCase() === "finished") {
+                        badgeClass = "badge-success";
+                        targetBodyId = "finished-body";
+                    } else if (section.toLowerCase() === "delayed") {
+                        badgeClass = "badge-danger";
+                        targetBodyId = "delayed-body";
+                    }
+
+                    const rowMarkup = `
+                        <tr class="project-row" data-team="${team}">
+                            <td><b>${title}</b></td>
+                            <td>${spine}</td>
+                            <td>${editor}</td>
+                            <td>${artist}</td>
+                            <td>${section.toLowerCase() === 'finished' ? dynamicMeta : (section.toLowerCase() === 'delayed' ? dynamicMeta : dynamicMeta)}</td>
+                            <td><span class="${badgeClass}">${section.toLowerCase() === 'finished' ? dynamicMeta + ' Complete' : dynamicMeta}</span></td>
+                        </tr>
+                    `;
+                    
+                    const targetBody = document.getElementById(targetBodyId);
+                    if(targetBody) targetBody.insertAdjacentHTML('beforeend', rowMarkup);
+                });
+
+                // Apply initial layout filter rule safely
+                filterTeam(currentFilter);
+
+            } catch (error) {
+                console.error("Dashboard engine failed to process sheet connection:", error);
+            }
+        }
 
         function updateChart() {
             const canvas = document.getElementById('statusPieChart');
@@ -354,6 +387,7 @@
         }
 
         window.filterTeam = function(teamName) {
+            currentFilter = teamName;
             document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
             if(teamName === 'Phoenix') document.getElementById('btn-phoenix').classList.add('active');
             if(teamName === 'Sibs') document.getElementById('btn-sibs').classList.add('active');
@@ -371,8 +405,7 @@
         };
 
         document.addEventListener("DOMContentLoaded", function() {
-            filterTeam('Phoenix');
-            setTimeout(updateChart, 300);
+            fetchSpreadsheetData();
         });
     </script>
 
