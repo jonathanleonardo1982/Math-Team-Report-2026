@@ -264,8 +264,8 @@
     </div>
 
     <script>
-        //https://docs.google.com/spreadsheets/d/e/2PACX-1vSCmxbFygdwcJX1OyqykZszRht-4P_8vW1ZsGEix8q0jTcygGBi3Jm1ZxsHc4pEUN900WnFJa6RLFW6/pub?output=csv
-        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSCmxbFygdwcJX1OyqykZszRht-4P_8vW1ZsGEix8q0jTcygGBi3Jm1ZxsHc4pEUN900WnFJa6RLFW6/pub?output=csv";
+        // https://docs.google.com/spreadsheets/d/e/2PACX-1vSCmxbFygdwcJX1OyqykZszRht-4P_8vW1ZsGEix8q0jTcygGBi3Jm1ZxsHc4pEUN900WnFJa6RLFW6/pubhtml
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSCmxbFygdwcJX1OyqykZszRht-4P_8vW1ZsGEix8q0jTcygGBi3Jm1ZxsHc4pEUN900WnFJa6RLFW6/pubhtml";
 
         let chartInstance = null;
         let currentFilter = "Phoenix";
@@ -274,7 +274,6 @@
             headerElement.classList.toggle('collapsed');
         };
 
-        // Standard robust CSV parser logic handling commas inside quotes safely
         function parseCSV(text) {
             let lines = text.split(/\r\n|\n/);
             let result = [];
@@ -306,7 +305,6 @@
                 const dataText = await response.text();
                 const parsedRows = parseCSV(dataText);
                 
-                // Clear out loading messages
                 document.getElementById('finished-body').innerHTML = '';
                 document.getElementById('ongoing-body').innerHTML = '';
                 document.getElementById('delayed-body').innerHTML = '';
@@ -318,17 +316,21 @@
                     const spine = columns[3];
                     const editor = columns[4];
                     const artist = columns[5];
-                    const dynamicMeta = columns[6];
+                    const dateVal = columns[6] || '';
+                    const metaVal = columns[7] || '';
 
-                    let badgeClass = "badge-info";
+                    let badgeMarkup = "";
                     let targetBodyId = "ongoing-body";
 
                     if (section.toLowerCase() === "finished") {
-                        badgeClass = "badge-success";
+                        badgeMarkup = `<span class="badge-success">100% Complete</span>`;
                         targetBodyId = "finished-body";
                     } else if (section.toLowerCase() === "delayed") {
-                        badgeClass = "badge-danger";
+                        badgeMarkup = `<span class="badge-danger">${metaVal}</span>`;
                         targetBodyId = "delayed-body";
+                    } else {
+                        badgeMarkup = `<span class="badge-info">${metaVal}</span>`;
+                        targetBodyId = "ongoing-body";
                     }
 
                     const rowMarkup = `
@@ -337,8 +339,8 @@
                             <td>${spine}</td>
                             <td>${editor}</td>
                             <td>${artist}</td>
-                            <td>${section.toLowerCase() === 'finished' ? dynamicMeta : (section.toLowerCase() === 'delayed' ? dynamicMeta : dynamicMeta)}</td>
-                            <td><span class="${badgeClass}">${section.toLowerCase() === 'finished' ? dynamicMeta + ' Complete' : dynamicMeta}</span></td>
+                            <td>${dateVal}</td>
+                            <td>${badgeMarkup}</td>
                         </tr>
                     `;
                     
@@ -346,7 +348,6 @@
                     if(targetBody) targetBody.insertAdjacentHTML('beforeend', rowMarkup);
                 });
 
-                // Apply initial layout filter rule safely
                 filterTeam(currentFilter);
 
             } catch (error) {
