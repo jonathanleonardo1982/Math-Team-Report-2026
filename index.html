@@ -13,7 +13,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     
     <style>
         body {
@@ -24,7 +24,6 @@
             padding: 0 0 20px 0;
         }
         
-        /* Blue Ribbon Header Styling */
         header {
             background-color: #2c3e50;
             color: #ffffff;
@@ -46,7 +45,6 @@
             font-size: 1.1rem; 
         }
 
-        /* Filter Buttons Container */
         .filter-container {
             display: flex;
             justify-content: center;
@@ -71,11 +69,9 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        /* Team Button Custom Color Definitions */
         #btn-phoenix.active { background-color: #e67e22; color: white; }
         #btn-sibs.active { background-color: #e74c3c; color: white; }
 
-        /* Layout Architecture */
         .grid-container {
             display: flex;
             flex-direction: column;
@@ -91,7 +87,6 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        /* Interactive Collapsible Dropdown Headers */
         .section-header {
             margin-top: 0;
             font-size: 1.4rem;
@@ -104,28 +99,19 @@
             gap: 10px;
             transition: opacity 0.2s ease;
         }
-        .section-header:hover {
-            opacity: 0.8;
-        }
+        .section-header:hover { opacity: 0.8; }
         .arrow-icon {
             display: inline-block;
             transition: transform 0.2s ease;
         }
-        .collapsed .arrow-icon {
-            transform: rotate(-90deg);
-        }
+        .collapsed .arrow-icon { transform: rotate(-90deg); }
 
-        /* Table Responsive Grid Layouts */
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
-            transition: max-height 0.3s ease-out;
         }
-        .collapsed + .table-wrapper {
-            display: none !important;
-        }
+        .collapsed + .table-wrapper { display: none !important; }
 
-        /* LOCK COLUMN WIDTHS: Forces table structure stability */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -146,7 +132,7 @@
         }
         tr:hover { background-color: #fafafa; }
 
-        /* Fixed Column Width Allocations for Standard Tables (Finished / Ongoing) */
+        /* Column Configs */
         .col-title { width: 30%; }
         .col-spine { width: 12%; }
         .col-editor { width: 18%; }
@@ -154,7 +140,6 @@
         .col-date { width: 13%; }
         .col-status { width: 12%; }
 
-        /* Fixed Column Width Allocations for Delayed Table */
         .col-delayed-title { width: 22%; }
         .col-delayed-spine { width: 12%; }
         .col-delayed-editor { width: 15%; }
@@ -175,3 +160,204 @@
     </style>
 </head>
 <body>
+
+    <header>
+        <h1>EPD-Math Team Status Report</h1>
+        <p>Combined Operations Dashboard | Date: June 2026</p>
+    </header>
+
+    <div class="filter-container">
+        <button id="btn-phoenix" class="btn active" onclick="filterTeam('Phoenix')">Phoenix Publishing House</button>
+        <button id="btn-sibs" class="btn" onclick="filterTeam('Sibs')">Sibs Publishing House</button>
+    </div>
+
+    <div class="grid-container">
+        
+        <div class="status-section" style="border-left: 5px solid #2ecc71;">
+            <h2 class="section-header" style="color: #2ecc71;" onclick="toggleSection(this)">
+                <span class="arrow-icon">▼</span> Finished Titles
+            </h2>
+            <div class="table-wrapper">
+                <table>
+                    <colgroup>
+                        <col class="col-title"><col class="col-spine"><col class="col-editor"><col class="col-artist"><col class="col-date"><col class="col-status">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Book Title</th><th>Spine</th><th>Editor</th><th>Artist</th><th>Completion Date</th><th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="finished-body">
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Early Childhood Reading Pack</b></td><td>12 mm</td><td>Dr. Maria Santos</td><td>Alan Cruz</td><td>June 10</td><td><span style="color:#2ecc71; font-weight:600;">100% Complete</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Grade 1 Math Foundations</b></td><td>15 mm</td><td>Dr. Maria Santos</td><td>Alan Cruz</td><td>June 12</td><td><span style="color:#2ecc71; font-weight:600;">100% Complete</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Grade 2 Elementary Geometry</b></td><td>14 mm</td><td>Dr. Maria Santos</td><td>Luna Reyes</td><td>June 15</td><td><span style="color:#2ecc71; font-weight:600;">100% Complete</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Primary Numbers Discovery A</b></td><td>10 mm</td><td>John Smith</td><td>Ray Sunga</td><td>May 28</td><td><span style="color:#2ecc71; font-weight:600;">100% Complete</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Primary Numbers Discovery B</b></td><td>10 mm</td><td>John Smith</td><td>Ray Sunga</td><td>June 02</td><td><span style="color:#2ecc71; font-weight:600;">100% Complete</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Kindergarten Math Explorer</b></td><td>11 mm</td><td>John Smith</td><td>Elena Diaz</td><td>June 14</td><td><span style="color:#2ecc71; font-weight:600;">100% Complete</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="status-section" style="border-left: 5px solid #3498db;">
+            <h2 class="section-header" style="color: #3498db;" onclick="toggleSection(this)">
+                <span class="arrow-icon">▼</span> Ongoing Titles
+            </h2>
+            <div class="table-wrapper">
+                <table>
+                    <colgroup>
+                        <col class="col-title"><col class="col-spine"><col class="col-editor"><col class="col-artist"><col class="col-date"><col class="col-status">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Book Title</th><th>Spine</th><th>Editor</th><th>Artist</th><th>Target Release Date</th><th>Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ongoing-body">
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Advanced Filipino Grammar</b></td><td>16 mm</td><td>Grace Poe</td><td>Luna Reyes</td><td>July 20</td><td><span style="color:#3498db; font-weight:600;">80%</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Grade 3 Advanced Word Problems</b></td><td>18 mm</td><td>Grace Poe</td><td>Luna Reyes</td><td>July 25</td><td><span style="color:#3498db; font-weight:600;">65%</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Grade 4 Intermediate Fractions</b></td><td>15 mm</td><td>Dr. Maria Santos</td><td>Mark Agno</td><td>August 05</td><td><span style="color:#3498db; font-weight:600;">40%</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Essential Algebra Skills Vol. 1</b></td><td>20 mm</td><td>Jaime Caro</td><td>Elena Diaz</td><td>July 15</td><td><span style="color:#3498db; font-weight:600;">90%</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Essential Algebra Skills Vol. 2</b></td><td>22 mm</td><td>Jaime Caro</td><td>Elena Diaz</td><td>August 12</td><td><span style="color:#3498db; font-weight:600;">55%</span></td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Intermediate Trigonometry Workbook</b></td><td>14 mm</td><td>John Smith</td><td>Ray Sunga</td><td>August 30</td><td><span style="color:#3498db; font-weight:600;">20%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="status-section" style="border-left: 5px solid #e74c3c;">
+            <h2 class="section-header" style="color: #e74c3c;" onclick="toggleSection(this)">
+                <span class="arrow-icon">▼</span> Delayed Titles
+            </h2>
+            <div class="table-wrapper">
+                <table>
+                    <colgroup>
+                        <col class="col-delayed-title"><col class="col-delayed-spine"><col class="col-delayed-editor"><col class="col-delayed-artist"><col class="col-delayed-date"><col class="col-delayed-reason">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Book Title</th><th>Spine</th><th>Editor</th><th>Artist</th><th>Revised Target Date</th><th>Reason for Delay</th>
+                        </tr>
+                    </thead>
+                    <tbody id="delayed-body">
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Grade 5 Comprehensive Statistics</b></td><td>19 mm</td><td>Grace Poe</td><td>Mark Agno</td><td>September 05</td><td>Awaiting finalized curriculum syllabus.</td>
+                        </tr>
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Grade 6 Practical Math Applications</b></td><td>17 mm</td><td>Dr. Maria Santos</td><td>Alan Cruz</td><td>September 15</td><td>Delayed due to graphic asset revision pipelines.</td>
+                        </tr>
+                        <tr class="project-row" data-team="Phoenix">
+                            <td><b>Junior High Math Core Index</b></td><td>25 mm</td><td>Grace Poe</td><td>Luna Reyes</td><td>October 01</td><td>Pending peer review from regional board.</td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Senior High Calculus</b></td><td>24 mm</td><td>Jaime Caro</td><td>Ray Sunga</td><td>September 20</td><td>Author requested medical leave.</td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Applied Business Mathematics</b></td><td>18 mm</td><td>John Smith</td><td>Elena Diaz</td><td>October 10</td><td>Pending correction of workbook appendices.</td>
+                        </tr>
+                        <tr class="project-row" data-team="Sibs">
+                            <td><b>Advanced Discrete Math Structures</b></td><td>21 mm</td><td>Jaime Caro</td><td>Ray Sunga</td><td>October 25</td><td>Awaiting final typography and print sign-offs.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="chart-box">
+            <h3 style="text-align: center; margin-top: 0; margin-bottom: 15px; color: #2c3e50; font-size: 1.2rem;">Project Status Breakdown</h3>
+            <canvas id="statusPieChart" style="max-width: 100%; height: auto;"></canvas>
+        </div>
+
+    </div>
+
+    <script>
+        let chartInstance = null;
+
+        window.toggleSection = function(headerElement) {
+            headerElement.classList.toggle('collapsed');
+        };
+
+        function updateChart() {
+            const canvas = document.getElementById('statusPieChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            const finishedCount = document.querySelectorAll('#finished-body .project-row:not(.hidden-row)').length;
+            const ongoingCount = document.querySelectorAll('#ongoing-body .project-row:not(.hidden-row)').length;
+            const delayedCount = document.querySelectorAll('#delayed-body .project-row:not(.hidden-row)').length;
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            // Fallback wrapper check ensures Chart.js loads safely
+            if (typeof Chart !== 'undefined') {
+                chartInstance = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Finished', 'Ongoing', 'Delayed'],
+                        datasets: [{
+                            data: [finishedCount, ongoingCount, delayedCount],
+                            backgroundColor: ['#2ecc71', '#3498db', '#e74c3c'],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { position: 'bottom' } }
+                    }
+                });
+            }
+        }
+
+        window.filterTeam = function(teamName) {
+            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+            if(teamName === 'Phoenix') document.getElementById('btn-phoenix').classList.add('active');
+            if(teamName === 'Sibs') document.getElementById('btn-sibs').classList.add('active');
+
+            document.querySelectorAll('.project-row').forEach(row => {
+                const rowTeam = row.getAttribute('data-team');
+                if (rowTeam === teamName) {
+                    row.classList.remove('hidden-row');
+                } else {
+                    row.classList.add('hidden-row');
+                }
+            });
+
+            updateChart();
+        };
+
+        // Kicks off setup initialization smoothly after resource confirmation
+        document.addEventListener("DOMContentLoaded", function() {
+            filterTeam('Phoenix');
+            // Delayed initialization wait to capture full script mounting
+            setTimeout(updateChart, 300);
+        });
+    </script>
+
+</body>
+</html>
